@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: raw
+    database: USER_DB_MACKEREL
+    schema: RAW
+    tables:
+      - name: user_session_channel
+      - name: session_timestamp
+
+models:
+  - name: session_summary
+    description: "Joined model combining user_session_channel and session_timestamp."
+    columns:
+      - name: session_id
+        description: "Unique session identifier."
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        description: "User identifier."
+      - name: channel
+        description: "Acquisition channel."
+      - name: session_ts
+        description: "Session timestamp."
